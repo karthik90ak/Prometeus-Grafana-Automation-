@@ -1,0 +1,7 @@
+---
+ - name: run mysqlde-exporter
+   become: true
+   hosts: local
+   tasks: 
+     - name: run the command
+       command: docker run -idt -p 9104:9104 -e DATA_SOURCE_NAME="root:mypass@(hostname:3306)/" prom/mysqld-exporter 

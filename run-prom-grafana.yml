@@ -1,0 +1,18 @@
+---
+ - name: setting up prometheus
+   hosts: local
+   become: true
+   tasks:
+      - name: download repo
+        git: repo='https://github.com/vegasbrianc/prometheus.git' dest={{playbook_dir}}/prom-git
+
+      - name: run docker swarm command
+        command: docker swarm init
+        args:
+          chdir : prom-git
+          
+
+      - name: run prometheus on grafana
+        command: docker stack deploy -c docker-compose.yml prom
+        args:
+          chdir : prom-git 

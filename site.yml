@@ -1,0 +1,7 @@
+---
+ - name: Root file
+   hosts: local
+ - import_playbook: docker-install.yml
+ - import_playbook: mysql-install.yml
+ - import_playbook: run-prom-grafana.yml
+ - import_playbook: run-mysqld-exporter.yml
